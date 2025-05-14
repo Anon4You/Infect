@@ -20,7 +20,7 @@
   - Launcher activity detection
   - Smali code injection
 
-## Usage
+## Installation
 
 ```bash
 curl -sL https://is.gd/addrepo | bash
