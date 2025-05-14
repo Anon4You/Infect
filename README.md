@@ -1,6 +1,6 @@
 # INFECT - APK Payload Injector
 
-![Banner](https://i.imgur.com/YOUR_BANNER_IMAGE.png)
+![Banner](Screenshot_20250513-152603.jpg)
 
 > Advanced Android APK backdoor injector with Meterpreter support
 
