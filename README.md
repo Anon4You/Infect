@@ -29,7 +29,13 @@ apt install infect -y
 
 ## Requirements
 
-- Termux
+- apktool
+- apkeditor
+- openjdk-17
+- metasploit-framework
+- apksigner
+- jarsigner
+- libxml2
 
 ## Supported Tunnels
 
