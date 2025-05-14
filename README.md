@@ -51,7 +51,7 @@ apt install infect -y
 
 ## License
 
-GNU General Public License v3.0
+ [BSD-3-Clause license](LICENCE)
 
 ---
 Developed by [alienkrishn](https://github.com/alienkrishn)
