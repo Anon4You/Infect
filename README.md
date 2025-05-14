@@ -51,7 +51,7 @@ apt install infect -y
 
 ## License
 
- [BSD-3-Clause license](LICENCE)
+ [BSD-3-Clause license](LICENSE)
 
 ---
 Developed by [alienkrishn](https://github.com/alienkrishn)
