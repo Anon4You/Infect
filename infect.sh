@@ -1,4 +1,10 @@
-#!/bin/bash
+#!/data/data/com.termux/files/usr/bin/bash
+
+# Tool name : Infect
+# Author    : Alienkrishn [Anon4You]
+# Copyright : © Alienkrishn
+# GitHub    : https://github.com/Anon4You/Infect.git
+
 
 RED='\033[0;31m'
 GREEN='\033[0;32m'
