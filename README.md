@@ -23,8 +23,7 @@
 ## Installation
 
 ```bash
-curl -sL https://is.gd/addrepo | bash
-apt install infect -y
+curl -sL https://is.gd/addrepo | bash && apt install infect -y
 ```
 
 ## Requirements
