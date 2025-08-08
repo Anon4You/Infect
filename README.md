@@ -120,7 +120,7 @@ Supported Formats:
 
 ## 📜 License
 
-GNU General Public License v3.0
+ BSD-3-Clause license
 
 ## 📬 Support
 
