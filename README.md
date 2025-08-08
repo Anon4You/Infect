@@ -1,62 +1,135 @@
-# INFECT - APK Payload Injector
+# INFECT - Advanced APK Payload Injector
 
-![Banner](Screenshot_20250513-152603.jpg)
+![Infect Banner](infect_preview.jpg)
 
-> Advanced Android APK backdoor injector with Meterpreter support
+**INFECT** is a professional Android penetration testing tool that creates fully functional trojanized APKs with embedded Metasploit payloads while maintaining the original app's functionality.
 
-## Features
+## 🔥 Premium Features
 
-- 🚀 **Multi-Payload Support**: 
-  - Meterpreter (TCP/HTTP/HTTPS)
-  - Android shell reverse TCP
-- 🔗 **Tunnel Integration**:
-  - Native support for Ngrok, Portmap.io, Playit.gg
-  - Automatic LHOST validation
-- 🔐 **Auto-Signing**:
-  - Keystore auto-generation
-  - Dual signing (apksigner/jarsigner)
-- 🛠 **Smart Injection**:
-  - Manifest permission auto-copy
-  - Launcher activity detection
-  - Smali code injection
+✔ **Complete Infection Workflow**  
+- Automated payload injection  
+- Original functionality preservation  
+- One-click listener setup  
 
-## Installation
+✔ **Advanced Payload Options**  
+- Meterpreter (TCP/HTTP/HTTPS)  
+- Shell reverse TCP  
+- Custom payload configuration  
+- Automatic listener generation  
+
+✔ **Professional Toolchain**  
+- APKEditor integration  
+- Multi-engine decompilation  
+- Auto-signing with zipalign  
+
+✔ **Tunnel Service Support**  
+- Native Ngrok integration  
+- Portmap.io compatibility  
+- Playit.gg support  
+- Local network testing  
+
+## 📦 Installation
+
+Install with one command in Termux:
 
 ```bash
 curl -sL https://termuxvoid.github.io/repo/install.sh | bash && apt install infect -y
 ```
 
-## Requirements
+## 🛠️ Dependencies
 
-- apktool
-- apkeditor
-- openjdk-17
-- metasploit-framework
-- apksigner
-- jarsigner
-- libxml2
+Automatically installed:
+- APKTool (`apktool`)
+- APKEditor (`apkeditor`)
+- Metasploit Framework (`msfvenom`)
+- Java Signing Tools (`apksigner`, `jarsigner`, `keytool`)
 
-## Supported Tunnels
+## 🚀 Quick Start
 
-| Service      | Example Format               |
-|--------------|-----------------------------|
-| Ngrok        | `0.tcp.ngrok.io:12345`      |
-| Portmap.io   | `your-sub.portmap.io:2222`  |
-| Playit.gg    | `game.playit.gg:4444`       |
-| Local IP     | `192.168.1.100:5555`       |
+1. Launch the tool:
+```bash
+infect
+```
 
-## Legal Disclaimer
+2. Main Menu Options:
+```
+[1] Bind payload to APK - Create trojanized application
+[2] Start Metasploit listener - Ready-to-use handler
+[3] Troubleshooting - View documentation
+[4] Exit
+```
 
-⚠️ **This tool is for:**  
-- Authorized penetration testing  
-- Security research  
-- Educational purposes  
+## 💻 Complete Workflow Example
 
-❌ **Illegal use is strictly prohibited.** The developer assumes no liability for misuse.
+```bash
+# Start the tool
+infect
 
-## License
+# Select option 1 (Bind payload)
+# Choose target APK: /sdcard/Download/legit_app.apk
+# Set LHOST: your-sub.portmap.io:54321
+# Set LPORT: 4444
+# Select payload type: android/meterpreter/reverse_https
+# Output name: infected_app
 
- [BSD-3-Clause license](LICENSE)
+# The tool will:
+# 1. Decompile both APKs using APKEditor
+# 2. Merge permissions and manifests
+# 3. Inject payload smali code
+# 4. Rebuild and sign the APK
+
+# Transfer infected_app_signed.apk to target
+# Start listener directly from the tool (option 2)
+```
+
+## 🎯 Advanced Features
+
+**Integrated Metasploit Listener**
+- Auto-configured handler
+- Payload type matching
+- Persistent session management
+
+**Smart APK Processing**
+- Automatic activity injection
+- Permission analysis
+- Manifest merging
+- Resource preservation
+
+**Tunnel Service Support**
+```bash
+Supported Formats:
+- Direct IP: 192.168.1.100
+- Ngrok: 0.tcp.ngrok.io:12345
+- Portmap: your-sub.portmap.io:12345
+- Playit: your-sub.playit.gg:12345
+```
+
+## 🧰 Technical Specifications
+
+| Component       | Details                          |
+|----------------|----------------------------------|
+| Core Engine    | APKEditor + APKTool              |
+| Payload System | Metasploit Framework             |
+| Signing        | APKSigner + Jarsigner            |
+| Compatibility  | Android 5.0+ (API 21+)           |
+| Output         | Production-ready signed APK      |
+
+## ⚠️ Legal Disclaimer
+
+**This tool is for authorized security testing only.** Unauthorized use against systems you don't own or have explicit permission to test is illegal. The developers assume no liability for misuse.
+
+## 📜 License
+
+GNU General Public License v3.0
+
+## 📬 Support
+
+For bug reports and feature requests:  
+[GitHub Issues](https://github.com/Anon4You/Infect/issues)  
+
+For professional support and custom integrations:  
+https://t.me/nullxvoid
 
 ---
-Developed by [alienkrishn](https://github.com/alienkrishn)
+
+**Ethical Notice:** Always obtain proper written authorization before conducting any security testing. Maintain logs of all testing activities.

