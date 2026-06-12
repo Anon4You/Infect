@@ -33,7 +33,7 @@
 Install with one command in Termux:
 
 ```bash
-curl -sL https://termuxvoid.github.io/repo/install.sh | bash && apt install infect -y
+curl -sL https://github.com/termuxvoid/repo/raw/main/install.sh | bash && apt install infect -y
 ```
 
 ## 🛠️ Dependencies
